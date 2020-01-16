@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- favicon -->
+    <link rel="icon" type="image/png" href="#" />
+
+    <!-- Firebase App is always required and must be first -->
+    <script src="https://www.gstatic.com/firebasejs/5.5.2/firebase-app.js"></script>
+
+    <!-- Add additional services that you want to use -->
+    <script src="https://www.gstatic.com/firebasejs/5.5.2/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.5.2/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.5.2/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.5.2/firebase-messaging.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.5.2/firebase-functions.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.5.2/firebase-storage.js"></script>
+
+    <script src="assets/js/config.js"></script>
+
+
+
+<script type="text/javascript">
+function handleSignUp() {
+    var email = $('#email').val();
+    //verif que les 2 passwords sont identiques
+    var password = $('#password').val();
+    var password2 = $('#password2').val();
+    if(password === password2){
+      if ($('#condition').is(":checked")){
+        firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
+          // Handle Errors here.
+          var errorCode = error.code;
+          var errorMessage = error.message;
+          // [START_EXCLUDE]
+          if (errorCode == 'auth/weak-password') {
+            alert('The password is too weak.');
+          } else {
+            alert(errorMessage);
+          }
+          console.log(error);
+          // [END_EXCLUDE]
+          alert('Votre compte a bien été créé');
+        });
+
+        }else{
+          alert('Merci de valider les conditions générales !')
+
+        }
+  }else{
+    alert('Les mots de passe ne correspondent pas !');
+  }
+}//fin de handleSignUp
+
+function logout(){
+  firebase.auth().signOut();
+}
+
+function initApp(){
+        // Listening for auth state changes.
+      // [START authstatelistener]
+      firebase.auth().onAuthStateChanged(function(user) {
+          // [START_EXCLUDE silent]
+        if (user) {
+          // Si on est connecté
+          console.log('connecté');
+        } else {
+          // si on est pas connecté
+          // [END_EXCLUDE]
+          console.log('déconnecté');
+        }
+      });
+      // [END authstatelistener]
+      
+      document.getElementById('create_user').addEventListener('click', handleSignUp, false);
+      document.getElementById('logout').addEventListener('click', logout, false);
+}
+
+//en fin de chargement de la page
+window.onload = function() {
+  initApp();
+};
+</script>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+
+    <!-- CSS Perso -->
+    <link rel="stylesheet" href="assets/css/style.css">
+
+    <title>XXXXXXXXXXXXXXXXXXX</title>
+  </head>
+  <body>
+    <h1>Créer un compte</h1>
+<form>
+  <div class="form-group">
+    <label for="exampleInputEmail1">Email address</label>
+    <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email">
+    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">Mot de passe</label>
+    <input type="password" class="form-control" id="password" placeholder="Mot de passe">
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">Confirmez le mot de passe</label>
+    <input type="password" class="form-control" id="password2" placeholder="Confirmez le mot de passe">
+  </div>
+  <div class="form-group form-check">
+    <input type="checkbox" id="condition" class="form-check-input" id="cond_gen">
+    <label class="form-check-label"><a href="#">Accepter les conditions générales</a></label>
+  </div>
+  <button type="button" class="btn btn-primary" id="create_user">Créer un compte</button>
+  <button type="button" class="btn btn-danger" id="logout">Déconexion</button>
+</form>
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="assets/js/jQuery_v3.3.1.min.js"></script>
+    <script src="assets/js/popper.js"></script>
+    <script src="assets/js/4.1.3_bootstrap.min.js"></script>
+  </body>
+</html>
