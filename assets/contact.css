@@ -1,0 +1,25 @@
+
+.background-image{
+    background-image: url("images/bg-image.jpg");
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+#contactForm{
+    position: relative;
+    top: 70%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 20px;
+    background-color: #000000e0;
+}
+.card-body{
+    background-color: #000000e0;
+}
+
+.h5{
+    color: #FFCC33;
+    margin: 15px;
+}
+

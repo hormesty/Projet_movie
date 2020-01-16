@@ -1,0 +1,38 @@
+body {
+  background-color:#000000e0;
+  width: 100%;
+}
+h1{
+  color:#ffcc33;
+}
+
+p{
+  color: black;
+}
+h5, h6{
+  color: black;
+  font-weight: bold;
+}
+
+h2{
+    color:#ffcc33;
+    text-align: center;
+}
+.btn{
+  position: absolute;
+  bottom: 10px;
+  right: 20px;
+}
+#div_reglage_hauteur{
+  padding-top: 90px;
+  padding-bottom: 20px;
+}
+
+@media (max-width: 582px){
+  #div_reglage_hauteur{
+    padding-top: 130px;
+  }
+  h2{
+    font-size: 1.4rem;
+  }
+}

@@ -1,0 +1,19 @@
+body{
+    background-color: #000000e0;
+}
+@media (max-width: 767px){
+}
+
+@media (max-width: 596px){
+    body{
+        background-color: #000000e0;
+    }
+    #carsel{
+        position: relative;
+        top: 124px;
+    }
+    #footer{
+        position: relative;
+        top: 124px;
+    }
+}

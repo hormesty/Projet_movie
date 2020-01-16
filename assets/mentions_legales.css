@@ -1,0 +1,21 @@
+*{
+    box-sizing: border-box;
+}
+body{
+    background-color: #000000e0;
+}
+#reglage_hauteur_text{
+    margin-top: 90px;
+}
+p, li{
+    color: white;
+}
+
+h2, h3{
+    color: #FFCC33;
+}
+@media (max-width: 600px){
+    #reglage_hauteur_text{
+        margin-top: 130px;
+    }
+}

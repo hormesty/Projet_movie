@@ -1,0 +1,16 @@
+body{
+	background-color: #000000e0;
+	color: #FFCC33;
+}
+button{
+	background-color: #FFCC33;
+}
+
+#connect{
+	width: 10px;
+	height: 10px;
+	background-color: red;
+	border-radius: 50%;
+	color: green;
+}
+

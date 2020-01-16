@@ -1,0 +1,194 @@
+#nav {
+    background-color: #000000e0;
+    position: fixed;
+    z-index: 3;
+    width: 100%;
+}
+#nav:hover{
+  color: darkgoldenrod;
+}
+
+.seb{
+  margin-top: 100px;
+
+}
+
+h1, h2, h3, h4,h5, h6 {
+    color: #FFCC33;
+}
+
+#button_burger_us{
+    background-color: #FFCC33;
+}
+
+.sidebar-nav {
+    text-align: center;
+}
+.dropdown-menu {
+  color: #FFCC33;
+  background-color: #000000e0;
+}
+a:active{
+  color: #FFCC33;
+}
+
+ul li a {
+    color: #FFCC33;
+}
+.dropdown-toggle {
+  color: #FFCC33;
+  background-color: #201f1f;
+}
+
+
+#inscription{
+    color: #FFCC33;
+}
+#connexion{
+    color: #FFCC33;
+}
+
+button {
+    background-color: #000000e0;
+}
+
+.button {
+
+    border: none;
+    padding: 5px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    cursor: pointer;
+    border-radius: 10px;
+
+  }
+
+  .button1 {
+    color:  #FFCC33;
+  }
+
+  .button1:hover {
+    background-color: #FFCC33;
+    color: #000000e0;
+    text-decoration: none
+  }
+
+  .button2 {
+    color:  #FFCC33;
+  }
+
+  .button2:hover {
+    background-color: #FFCC33; ;
+    color: #000000e0;
+    text-decoration: none
+  }
+
+  .button3 {
+    color:  #FFCC33;
+  }
+
+  .button3:hover {
+    background-color: #FFCC33;
+    color: #000000e0;
+    text-decoration: none
+  }
+
+  .button4 {
+    color:  #FFCC33;
+  }
+
+  .button4:hover {
+    background-color: #FFCC33;
+    color: #000000e0;
+    text-decoration: none
+  }
+
+  .modal-content{
+    background-color: #000000e0;
+  }
+
+  .yellowText{
+      color: #FFCC33;
+  }
+
+  #firechat-wrapper {
+    height: 600px;
+    max-width: 700px;
+    width : 100%;
+    padding: 10px;
+    border: 1px solid #FFCC33;
+    background-color: #201f1f;
+    margin: 50px auto;
+    text-align: center;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    -webkit-box-shadow: 0 5px 25px #666;
+    -moz-box-shadow: 0 5px 25px #666;
+    box-shadow: 0 5px 25px #666;
+  }
+
+  #connect{
+	width: 10px;
+	height: 10px;
+	background-color: red;
+	border-radius: 50%;
+	color: green;
+}
+
+#decouvertee{
+  width:100%;
+}
+
+
+
+/*////////////////////////////////////////////////*/
+*{
+  box-sizing: border-box;
+}
+
+body, html{
+font-family: 'Rosario', sans-serif;
+height: 100%;
+}
+a{
+  text-decoration: none;
+  color: white;
+}
+a:hover{
+  color: #ffcc33;
+  text-decoration: none;
+  transition: 500ms;
+}
+
+
+.carousel-caption {
+  transform: translateY(-60%);
+  bottom: 0;
+  top: 60%;
+}
+
+.titre_slide_us{
+  font-size: 4rem;
+}
+
+.colorFooter {
+  color: #FFCC33
+}
+.colorFooter:hover{
+  color: #876c1c;
+  transition: 500ms;
+}
+
+
+/*////////////////////////////////////////////////////*/
+
+#footer{
+  background-color: #000000e0;
+  width: 100%;
+}
