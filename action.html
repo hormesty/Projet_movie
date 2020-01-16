@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  
+  <!-- Bootstrap core CSS -->
+  <link href="vendor2/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="assets/style.css" rel="stylesheet">
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <link href="assets/style.css" rel="stylesheet">
+
+  <title>Movie-Discover</title>
+
+      <!-- FIREBASE -->
+      <script src="https://www.gstatic.com/firebasejs/5.7.3/firebase.js"></script>
+      <!-- <script src="https://www.gstatic.com/firebasejs/5.5.2/firebase-app.js"></script> -->
+      <!-- FIREBASE -->
+
+      <!-- Firebase App is always required and must be first -->
+      <script src="https://www.gstatic.com/firebasejs/5.5.2/firebase-app.js"></script>
+
+      <!-- Add additional services that you want to use -->
+      <script src="https://www.gstatic.com/firebasejs/5.7.2/firebase-auth.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/5.7.2/firebase-database.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/5.7.2/firebase-firestore.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/5.7.2/firebase-messaging.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/5.7.2/firebase-functions.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/5.5.2/firebase-storage.js"></script>
+  
+      <script src="js/config.js"></script>
+      <script src="js/inscription-connexion.js"></script>
+      <!-- <script src="js/action.js"></script> -->
+
+
+
+
+ <!-- Template -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic" rel="stylesheet"
+      type="text/css">
+    <link href="vendor/simple-line-icons/css/simple-line-icons.css" rel="stylesheet">
+    <link href="assets/stylish-portfolio.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
+      crossorigin="anonymous">
+<!-- /Template -->
+  
+<!-- Fire Chat -->
+   
+
+  <!-- LIEN JQUERY -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <!-- LIEN JQUERY -->
+  
+    <!-- Firechat -->
+    <link rel="stylesheet" href="https://cdn.firebase.com/libs/firechat/3.0.1/firechat.min.css" />
+    <script src="https://cdn.firebase.com/libs/firechat/3.0.1/firechat.min.js"></script>
+<!-- /Fire Chat -->
+
+    <!-- favicon -->
+    <link rel="icon" type="image/png" href="#" />
+
+
+
+      
+          <!-- Bootstrap CSS -->
+          <link rel="stylesheet" href="assets/bootstrap.min.css">
+      
+          <!-- CSS Perso -->
+          
+          <link rel="stylesheet" href="assets/category.css">
+          <link rel="stylesheet" href="assets/style.css">
+
+
+
+          
+  
+
+</head>
+
+<body>
+    <nav id="nav" class="navbar navbar-expand-lg navbar-light justify-content-center">
+        <a class="navbar-brand" href="index.html"><h1>Movie-Discover</h1></a>
+        <div>
+          <!-- Bouton Connexion -->
+          <a href="#" class="button button1" data-toggle="modal" data-target="#seconnecter" data-whatever="@seConnecter">Se connecter</a>
+          <a href="#" class="button button2" data-toggle="modal" data-target="#sinscrire" data-whatever="@sinscrire">S'inscrire</a>
+          <a href="#" class="button button3" data-toggle="modal" data-target="#chat" data-whatever="@chat">Chat</a>
+          <a href="#" class="button button4" id="decouverte" data-toggle="modal" data-target="#top" data-whatever="@top">Découverte</a>
+          <div class="modal fade" id="seconnecter" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1"
+            aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <form id="connectForm">
+                    <h1 class="modal-title yellowText" id="exampleModalLabel1">Se connecter</h1>
+                    <div class="form-group">
+                      <label class="yellowText" for="exampleInputEmail1">Email</label>
+                      <input type="email" class="form-control" id="email_connexion" aria-describedby="emailHelp" placeholder="Votre email de connexion">
+                    </div>
+                    <div class="modal-body">
+                      <label class="yellowText" for="exampleInputPassword1">Mot de passe</label>
+                      <input type="password" class="form-control" id="password_connexion" placeholder="Mot de passe">
+                    </div>
+                    <button type="button" class="btn btn-primary" id="login_connexion">Se logger</button>
+                    <button type="button" class="btn btn-danger" id="logout_connexion">Déconexion</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- /Bouton Connexion -->
+    
+          <!-- Bouton Inscription -->
+          <div class="modal fade" id="sinscrire" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel2"
+            aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <form id="signInForm">
+                    <div class="form-group">
+                      <label class="yellowText" for="exampleInputEmail1">Adresse mail</label>
+                      <input type="email" class="form-control" id="email_inscription" aria-describedby="emailHelp" placeholder="Enter email">
+                      <small id="emailHelp" class="form-text text-muted yellowText">Nous ne partagerons jamais votre email avec qui que ce soit.</small>
+                    </div>
+                    <div class="form-group">
+                      <label class="yellowText" for="exampleInputPassword1">Mot de passe</label>
+                      <input type="password" class="form-control" id="password_inscription" placeholder="Mot de passe">
+                    </div>
+                    <div class="form-group">
+                      <label class="yellowText" for="exampleInputPassword1">Confirmez le mot de passe</label>
+                      <input type="password" class="form-control" id="password2_inscription" placeholder="Confirmez le mot de passe">
+                    </div>
+                    <div class="form-group form-check">
+                      <input type="checkbox" id="condition" class="form-check-input" id="cond_gen">
+                      <label class="yellowText" class="form-check-label"><a href="#">Accepter les conditions générales</a></label>
+                    </div>
+                    <button type="button" class="btn btn-primary" id="create_user">Créer un compte</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- /Bouton Connexion -->
+    
+          <!-- Bouton Chat -->
+          <div class="modal fade" id="chat" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel3"
+            aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                    <div id="firechat-wrapper"></div>
+                    <script type="text/javascript">
+    
+                
+                      // Get a reference to the Firebase Realtime Database
+                      var chatRef = firebase.database().ref();
+                
+                      // Create an instance of Firechat
+                      var chat = new FirechatUI(chatRef, document.getElementById("firechat-wrapper"));
+                
+                      // Listen for authentication state changes
+                      firebase.auth().onAuthStateChanged(function(user) {
+                        if (user) {
+                          // If the user is logged in, set them as the Firechat user
+                          chat.setUser(user.uid, "Anonymous" + user.uid.substr(10, 8));
+                        } else {
+                          // If the user is not logged in, sign them in anonymously
+                          firebase.auth().signInAnonymously().catch(function(error) {
+                            console.log("Error signing user in anonymously:", error);
+                          });
+                        }
+                      });
+                    </script>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Bouton Chat -->
+                  <!-- Bouton Decouverte-->
+      <div class="modal fade" id="top" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel4" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered"  role="document">
+            <div class="modal-content">
+              <div class="modal-header" >
+                <img src="" id="decouvertee" alt="">
+                <script LANGUAGE="JavaScript">
+                  var dev = document.getElementById('decouvertee');
+                  $('#decouverte').click(function(){
+                  var tab = new Array("Bienvenue_a_Zombieland_2.png","Avengers_Endgame.jpg","Avatar_2.jpg","Captain_Marvel.jpg","Dragons_3_Le_Monde_cache.jpg","Toy_Story_4.jpg","Star_Wars_Episode_IX.jpg","1aladin.jpg","1anna.jpg","1aqua.jpg","1dumbo.jpg","1glass.jpg","1joker.jpg","1mary.jpg","1men.jpg","1mule.jpg","1nicky.jpg","1terminator.jpg");
+                  var n = parseInt(Math.random() * tab.length)
+                  while (isNaN(n)) {
+                    n = parseInt(Math.random() * tab.length)  
+                  }
+                  dev.src="assets/images/"+tab[n];
+  
+                  });
+                  
+  
+                </script>
+              </div>
+            </div>
+          </div>
+        </div>
+  
+        <!--fin bouton découverte-->
+    
+    
+        <section id="page-top">
+    
+          <!-- Navigation -->
+          <a class="menu-toggle rounded bg-warning" href="#">
+            <i class="fas fa-bars"></i>
+          </a>
+          <nav id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+              <li class="sidebar-brand">
+                <a class="js-scroll-trigger" href="#page-top">Menu</a>
+              </li>
+              <li class="sidebar-nav-item">
+                <a class="js-scroll-trigger" href="actu.html">Actualités</a>
+              </li>
+              <li class="sidebar-nav-item dropdown">
+                <div class="dropright">
+                    <a href="#" class="dropdown-toggle yellowText" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      Catégories
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                      <a class="dropdown-item" id="action" href="action.html">Action</a>
+                      <a class="dropdown-item" id="horreur" href="horreur.html">Horreur</a>
+                      <a class="dropdown-item" id="fantastique" href="fantastique.html">Fantastique</a>
+                      <a class="dropdown-item" id="jeunesse" href="jeunesse.html">Jeunesse</a>
+                      <a class="dropdown-item" id="comedie" href="comedie.html">Comédie</a>
+                    </div>
+                  </div>
+              </li>
+              <li class="sidebar-nav-item">
+                <a class="js-scroll-trigger" href="contact.html">Contact</a>
+              </li>
+            </ul>
+          </nav>
+          <!-- /Navigation -->
+    
+    
+    
+    
+
+    
+          <!-- Bootstrap core JavaScript -->
+          <script src="vendor/jquery/jquery.min.js"></script>
+          <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    
+          <!-- Plugin JavaScript -->
+          <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+    
+          <!-- Custom scripts for this template -->
+          <script src="js/stylish-portfolio.min.js"></script>
+    
+          <!-- Bootstrap core JavaScript -->
+          <script src="vendor2/vendor/jquery/jquery.min.js"></script>
+          <script src="vendor2/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    
+          <!-- Plugin JavaScript -->
+          <!-- <script src="vendor2//vendor/jquery-easing/jquery.easing.min.js"></script> -->
+
+<!-- /////////////////////////////////////////////////////////////////////////////////// -->
+          <!-- Bootstrap core JavaScript -->
+          <!-- <script src="vendor2/vendor/jquery/jquery.min.jsq&"></script> -->
+          <script src="vendor2/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- /////////////////////////////////////////////////////////////////////////////////// -->
+        </section>
+      </nav>
+
+      <div class="text-center" id="_categories_">
+            <a href="action.html" class="h3 my-5 mx-3 yellowText">Action</a>
+            
+            <a href="horreur.html" class="h3 my-5 mx-3 yellowText">Horreur</a>
+            
+            <a href="fantastique.html" class="h3 my-5 mx-3 yellowText">Fantastique</a>
+            
+            <a href="jeunesse.html" class="h3 my-5 mx-3 yellowText">Jeunesse</a>
+            
+            <a href="comedie.html" class="h3 my-5 mx-3 yellowText">Comédie</a>
+        </div>
+  <div class="container">
+    <div class="row">
+
+      <div class="col-md-10">
+        <h1 class="text-center mb-4 seb" id="genre">Action</h1>
+        <h1 id="replaceTitle1" id="">Les gardiens de la galaxy</h1>
+
+        <div class="film1">
+          <iframe class="float-right d-inline-block" width="395" height="270" src="https://www.youtube.com/embed/ry19UYQoAro?controls=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <img class="d-inline-block" src="assets/affiches/action-1.jpg" alt="" id="image_a_remplacer1">
+          <h2 class="d-inline-block ml-4"></h2>
+        </div>
+        
+      </div>
+
+      <!-- Post Content -->
+      <div class="col-md-10">
+        <h3 class="my-4 synopsis">SYNOPSIS & DETAILS</h3>
+        <div id='texte_a_remplacer1'>
+        <p>Peter Quill est un aventurier traqué par tous les chasseurs de primes pour avoir volé un mystérieux globe convoité par le puissant Ronan, dont les agissements menacent l’univers tout entier. Lorsqu’il découvre le véritable pouvoir de ce globe et la menace qui pèse sur la galaxie, il conclut une alliance fragile avec quatre aliens disparates : Rocket, un raton laveur fin tireur, Groot, un humanoïde semblable à un arbre, l’énigmatique et mortelle Gamora, et Drax le Destructeur, qui ne rêve que de vengeance. En les ralliant à sa cause, il les convainc de livrer un ultime combat aussi désespéré soit-il pour sauver ce qui peut encore l’être …</p>  
+        </div>
+      </div>
+
+
+    
+  <!-- Image -->
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-10">
+        <h1 id="replaceTitle2">Pacific Rim</h1>
+
+        <div class="film1">
+          <iframe class="float-right d-inline-block" width="395" height="270" src="https://www.youtube.com/embed/qOX_O118N7k?controls=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <img class="d-inline-block" src="assets/affiches/action-2.jpg" alt="" id="image_a_remplacer2">
+          <h2 class="d-inline-block ml-4"></h2>
+        </div>
+
+      </div>
+
+      <!-- Post Content -->
+      <div class="col-md-10">
+        <h3 class="my-4 synopsis">SYNOPSIS & DETAILS</h3>
+        <div id='texte_a_remplacer2'>
+          <p>Surgies des flots, des hordes de créatures monstrueuses venues d’ailleurs, les «Kaiju», ont déclenché une guerre qui a fait des millions de victimes et épuisé les ressources naturelles de l’humanité pendant des années. Pour les combattre, une arme d’un genre nouveau a été
+              mise au point : de gigantesques robots, les «Jaegers», contrôlés simultanément par deux pilotes qui communiquent par télépathie grâce à une passerelle neuronale baptisée le «courant». Mais même les Jaegers semblent impuissants face aux redoutables Kaiju.
+              Alors que la défaite paraît inéluctable, les forces armées qui protègent l’humanité n’ont d’autre choix que d’avoir recours à deux héros hors normes : un ancien pilote au bout du rouleau (Charlie Hunnam) et une jeune femme en cours d’entraînement (Rinko Kikuchi) qui font équipe pour manoeuvrer un Jaeger d’apparence obsolète. Ensemble, ils incarnent désormais le dernier rempart de l’humanité contre une apocalypse de plus en plus imminente…</p>
+        </div>
+      </div>
+
+
+     
+
+
+  <!-- Image -->
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-10">
+        <h1 id="replaceTitle3">Jumanji</h1>
+
+        <div class="film1">
+          <iframe class="float-right d-inline-block" width="395" height="270" src="https://www.youtube.com/embed/oZI2njF5rx0?controls=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <img class="d-inline-block" src="assets/affiches/action-3.jpg" alt="" id="image_a_remplacer3">
+          <h2 class="d-inline-block ml-4"></h2>
+        </div>
+
+      </div>
+
+      <!-- Post Content -->
+      <div class="col-md-10">
+        <h3 class="my-4 synopsis">SYNOPSIS & DETAILS</h3>
+        <div id='texte_a_remplacer3'>
+          <p>Le destin de quatre lycéens en retenue bascule lorsqu’ils sont aspirés dans le monde de Jumanji. Après avoir découvert une vieille console contenant un jeu vidéo dont ils n’avaient jamais entendu parler, les quatre jeunes se retrouvent mystérieusement propulsés au cœur de la jungle de Jumanji, dans le corps de leurs avatars. Ils vont rapidement découvrir que l’on ne joue pas à Jumanji, c’est le jeu qui joue avec vous… Pour revenir dans le monde réel, il va leur falloir affronter les pires dangers et triompher de l’ultime aventure. Sinon, ils resteront à jamais prisonniers de Jumanji…</p>
+        </div>
+      </div>
+      <!-- Comments Form -->
+
+
+      
+  <!-- Image -->
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-10">
+        <h1 id="replaceTitle4">Terminator 2</h1>
+
+        <div class="film1">
+          <iframe class="float-right d-inline-block" width="395" height="270" src="https://www.youtube.com/embed/FZIVMf9Lpj8?controls=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <img class="d-inline-block" src="assets/affiches/action-4.jpg" alt="" id="image_a_remplacer4">
+          <h2 class="d-inline-block ml-4"></h2>
+        </div>
+
+      </div>
+
+      <!-- Post Content -->
+      <div class="col-md-10">
+        <h3 class="my-4 synopsis">SYNOPSIS & DETAILS</h3>
+        <div id='texte_a_remplacer4'>
+          <p>En 2029, après leur échec pour éliminer Sarah Connor, les robots de Skynet programment un nouveau Terminator, le T-1000, pour retourner dans le passé et éliminer son fils John Connor, futur leader de la résistance humaine. Ce dernier programme un autre cyborg, le T-800, et l'envoie également en 1995, pour le protéger. Une seule question déterminera le sort de l'humanité : laquelle des deux machines trouvera John la première ?</p>
+        </div>
+      </div>
+
+
+      
+  <!-- Image -->
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-10">
+        <h1 id="replaceTitle5">James Bond : Skyfall</h1>
+
+        <div class="film1">
+          <iframe class="float-right d-inline-block" width="395" height="270" src="https://www.youtube.com/embed/myChd7L8xYM?controls=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <img class="d-inline-block" src="assets/affiches/action-5.jpg" alt="" id="image_a_remplacer5">
+          <h2 class="d-inline-block ml-4"></h2>
+        </div>
+
+      </div>
+
+      <!-- Post Content -->
+      <div class="col-md-10">
+        <h3 class="my-4 synopsis">SYNOPSIS & DETAILS</h3>
+        <div id='texte_a_remplacer5'>
+          <p>Lorsque la dernière mission de Bond tourne mal, plusieurs agents infiltrés se retrouvent exposés dans le monde entier. Le MI6 est attaqué, et M est obligée de relocaliser l’Agence. Ces événements ébranlent son autorité, et elle est remise en cause par Mallory, le nouveau président de l’ISC, le comité chargé du renseignement et de la sécurité. Le MI6 est à présent sous le coup d’une double menace, intérieure et extérieure. Il ne reste à M qu’un seul allié de confiance vers qui se tourner : Bond. Plus que jamais, 007 va devoir agir dans l’ombre. Avec l’aide d’Eve, un agent de terrain, il se lance sur la piste du mystérieux Silva, dont il doit identifier coûte que coûte l’objectif secret et mortel…</p>
+        </div>
+      </div>
+      <!-- Comments Form -->
+
+
+     
+
+      <!-- FOOTER BAS DE PAGE AVEC CONTACT ET MENTIONS LEGALES -->
+      <footer id='footer'>
+          <section class="container-fluid">
+            <section class="row justify-content-center">
+              <div class="col-12">
+  
+              </div>
+                  <div>
+                      <p class=" h5 mx-2 my-2 colorFooter">©</p>
+                    </div>
+                    <div class="h5 mx-2 my-2 colorFooter">
+                      <a href="contact.html" class="colorFooter">CONTACT</a>
+                    </div>
+                    <div class=" h5 mx-2 my-2 colorFooter">/</div>
+                    <div class="h5 mx-2 my-2 ">
+                      <a href="mentions_legales.html" class="colorFooter">MENTIONS LEGALES</a>
+                    </div>          
+  
+      
+            </section>
+          </section>
+        </footer>
+      <!-- FIN DE FOOTER -->
+
+</body>
+</html>

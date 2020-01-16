@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- favicon -->
+    <link rel="icon" type="image/png" href="#" />
+
+    <!-- Firebase App is always required and must be first -->
+    <script src="https://www.gstatic.com/firebasejs/5.5.2/firebase-app.js"></script>
+
+    <!-- Add additional services that you want to use -->
+    <script src="https://www.gstatic.com/firebasejs/5.5.2/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.5.2/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.5.2/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.5.2/firebase-messaging.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.5.2/firebase-functions.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.5.2/firebase-storage.js"></script>
+
+    <script src="js/config.js"></script>
+    
+
+
+
+<script type="text/javascript">
+function initApp(){//ici le code qui s'executera au chargement de la page
+
+//verifie l'etat de l'utilisateur
+firebase.auth().onAuthStateChanged(function(user) {
+  if (user) {
+    console.log('connecté');
+    //gerer l'ajout d'image
+
+    function handleFileSelect(evt) {
+      evt.stopPropagation();
+      evt.preventDefault();
+      var auth = firebase.auth();
+      var storageRef = firebase.storage().ref();
+      var file = evt.target.files[0];
+
+      var metadata = {
+        'contentType': file.type
+      };
+
+      // Push to child path.
+      // [START oncomplete]
+      storageRef.child('images/' + file.name).put(file, metadata).then(function(snapshot) {
+        console.log('Uploaded', snapshot.totalBytes, 'bytes.');
+        console.log('File metadata:', snapshot.metadata);
+        // Let's get a download URL for the file.
+        snapshot.ref.getDownloadURL().then(function(url) {
+          var photo = $('#pict').children();
+          photo[0].src = url;
+
+          // [END_EXCLUDE]
+        });
+      }).catch(function(error) {
+        // [START onfailure]
+        console.error('Upload failed:', error);
+        // [END onfailure]
+      });
+      // [END oncomplete]
+    }// fin de handleFileSelect
+
+    //ecoute du bouton pour rajouter une photo
+    document.getElementById('file').addEventListener('change', handleFileSelect, false);
+
+        //au click de 
+    $('#newArticle').click(function(){
+      //lance la fonction apres le click
+      var title = $('#title').val();
+      var article = $('#article').val();
+      var whatever = $('#whatever').val();
+      var photo = $('#pict').children();
+      var keyword = $('#keyword').val();
+      // console.log(photo);
+      var url =  photo[0].src;
+      // console.log(photo[0]);
+      // console.log(url);
+
+      // console.log(title + ' ' + article + ' ' + whatever);
+          //fonction qui ecrit dans la base de données
+    function writeArticle() {
+      firebase.database().ref('article/').push({
+        title : title,
+        article: article,
+        whatever: whatever,
+        photoArticle: url,
+        motCle: keyword
+      });
+    }
+    writeArticle();
+    writeArticle();
+    });
+    // ...
+
+
+
+
+
+
+
+
+  } else {
+    // User is signed out.
+    console.log('déconnecté');
+
+    //redirige l'utilisateur sur la page index.html
+    window.location = "index.html";
+  }
+});
+
+}//fin initApp
+
+
+window.onload = function(){//attend le chargement de la page html complète
+initApp();
+}
+
+
+
+
+</script>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="assets/bootstrap_ajout_elements.min.css">
+
+    <!-- CSS Perso -->
+    <link rel="stylesheet" href="assets/style_ajout_elements.css">
+
+    <title>Ajout d'éléments</title>
+  </head>
+<body>
+  <div class="container">
+    <h1>Ajout d'un article</h1>
+<form>
+  <div class="form-group">
+    <label for="exampleInputEmail1">Titre</label>
+    <input type="text" class="form-control" id="title"  placeholder="Titre">
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">Texte de l'article</label>
+    <input type="text-area" class="form-control" id="article" placeholder="Texte de l'article">
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">Nom de la catégorie</label>
+    <input type="text" class="form-control" id="whatever" placeholder="Nom de la catégorie">
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">Mot clé</label>
+    <input type="text" class="form-control" id="keyword" placeholder="Mot clé">
+  </div>
+
+
+
+
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-warning" data-toggle="modal" data-target="#exampleModal">
+  Chargez une photo pour l'article
+</button>
+<div class="container">
+  <div id="pict" class="photo offset-4 col-4">
+    <img src="" class="img-fluid" alt="">
+  </div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Mettre les éléments dans la base de données</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-cell--12-col-tablet mdl-cell--12-col-desktop">
+<!--           <div class="mdl-card__title mdl-color--light-blue-600 mdl-color-text--white">
+          </div> -->
+          <div class="mdl-card__supporting-text mdl-color-text--grey-600" id="messagesDiv">
+            <h6>Selectionner votre photo de l'article</h6>
+            <input type="file" id="file" name="file"/>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+      </div>
+    </div>
+  </div>
+</div>
+  <button type="button" class="btn btn-warning" id="newArticle">Enregistrer un article</button>
+</form>
+</div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="assets/js/jQuery_v3.3.1.min.js"></script>
+    <script src="assets/js/popper.js"></script>
+    <script src="assets/js/4.1.3_bootstrap.min.js"></script>
+</body>
+</html>

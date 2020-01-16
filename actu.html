@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <link href="assets/style.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  <title>Actualités</title>
+
+      <!-- FIREBASE -->
+      <script src="https://www.gstatic.com/firebasejs/5.7.3/firebase.js"></script>
+      <!-- <script src="https://www.gstatic.com/firebasejs/5.5.2/firebase-app.js"></script> -->
+      <!-- FIREBASE -->
+
+      <!-- Firebase App is always required and must be first -->
+      <script src="https://www.gstatic.com/firebasejs/5.5.2/firebase-app.js"></script>
+
+      <!-- Add additional services that you want to use -->
+      <script src="https://www.gstatic.com/firebasejs/5.7.2/firebase-auth.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/5.7.2/firebase-database.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/5.7.2/firebase-firestore.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/5.7.2/firebase-messaging.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/5.7.2/firebase-functions.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/5.5.2/firebase-storage.js"></script>
+  
+      <script src="js/config.js"></script>
+      <script src="js/inscription-connexion.js"></script>
+      <script src="js/actu.js"></script>
+
+
+
+
+ <!-- Template -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic" rel="stylesheet"
+      type="text/css">
+    <link href="vendor/simple-line-icons/css/simple-line-icons.css" rel="stylesheet">
+    <link href="assets/stylish-portfolio.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
+      crossorigin="anonymous">
+<!-- /Template -->
+  
+<!-- Fire Chat -->
+   
+
+  <!-- LIEN JQUERY -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <!-- LIEN JQUERY -->
+  
+    <!-- Firechat -->
+    <link rel="stylesheet" href="https://cdn.firebase.com/libs/firechat/3.0.1/firechat.min.css" />
+    <script src="https://cdn.firebase.com/libs/firechat/3.0.1/firechat.min.js"></script>
+<!-- /Fire Chat -->
+
+    <!-- favicon -->
+    <link rel="icon" type="image/png" href="#" />
+
+
+
+      
+          <!-- Bootstrap CSS -->
+          <link rel="stylesheet" href="assets/bootstrap.min.css">
+      
+          <!-- CSS Perso -->
+          <link rel="stylesheet" href="assets/style.css">
+          <link rel="stylesheet" href="assets/actu.css">
+
+
+
+</head>
+
+<body>
+
+  
+
+
+  <!-- Navbar -->
+  <nav id="nav" class="navbar navbar-expand-lg navbar-light justify-content-center">
+    <a class="navbar-brand" href="index.html"><h1>Movie-Discover</h1></a>
+    <div>
+      <!-- Bouton Connexion -->
+      <a href="#" class="button button1" data-toggle="modal" data-target="#seconnecter" data-whatever="@seConnecter">Se connecter</a>
+      <a href="#" class="button button2" data-toggle="modal" data-target="#sinscrire" data-whatever="@sinscrire">S'inscrire</a>
+      <a href="#" class="button button3" data-toggle="modal" data-target="#chat" data-whatever="@chat">Chat</a>
+      <a href="#" class="button button4" id="decouverte" data-toggle="modal" data-target="#top" data-whatever="@top">Découverte</a>
+      <div class="modal fade" id="seconnecter" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <form id="connectForm">
+                <h1 class="modal-title yellowText" id="exampleModalLabel1">Se connecter</h1>
+                <div class="form-group">
+                  <label class="yellowText" for="exampleInputEmail1">Email</label>
+                  <input type="email" class="form-control" id="email_connexion" aria-describedby="emailHelp" placeholder="Votre email de connexion">
+                </div>
+                <div class="modal-body">
+                  <label class="yellowText" for="exampleInputPassword1">Mot de passe</label>
+                  <input type="password" class="form-control" id="password_connexion" placeholder="Mot de passe">
+                </div>
+                <button type="button" class="btn btn-primary" id="login_connexion">Se logger</button>
+                <button type="button" class="btn btn-danger" id="logout_connexion">Déconexion</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- /Bouton Connexion -->
+
+      <!-- Bouton Inscription -->
+      <div class="modal fade" id="sinscrire" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel2"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <form id="signInForm">
+                <div class="form-group">
+                  <label class="yellowText" for="exampleInputEmail1">Adresse mail</label>
+                  <input type="email" class="form-control" id="email_inscription" aria-describedby="emailHelp" placeholder="Enter email">
+                  <small id="emailHelp" class="form-text text-muted yellowText">Nous ne partagerons jamais votre email avec qui que ce soit.</small>
+                </div>
+                <div class="form-group">
+                  <label class="yellowText" for="exampleInputPassword1">Mot de passe</label>
+                  <input type="password" class="form-control" id="password_inscription" placeholder="Mot de passe">
+                </div>
+                <div class="form-group">
+                  <label class="yellowText" for="exampleInputPassword1">Confirmez le mot de passe</label>
+                  <input type="password" class="form-control" id="password2_inscription" placeholder="Confirmez le mot de passe">
+                </div>
+                <div class="form-group form-check">
+                  <input type="checkbox" id="condition" class="form-check-input" id="cond_gen">
+                  <label class="yellowText" class="form-check-label"><a href="#">Accepter les conditions générales</a></label>
+                </div>
+                <button type="button" class="btn btn-primary" id="create_user">Créer un compte</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- /Bouton Connexion -->
+
+      <!-- Bouton Chat -->
+      <div class="modal fade" id="chat" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel3"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+                <div id="firechat-wrapper"></div>
+                <script type="text/javascript">
+
+            
+                  // Get a reference to the Firebase Realtime Database
+                  var chatRef = firebase.database().ref();
+            
+                  // Create an instance of Firechat
+                  var chat = new FirechatUI(chatRef, document.getElementById("firechat-wrapper"));
+            
+                  // Listen for authentication state changes
+                  firebase.auth().onAuthStateChanged(function(user) {
+                    if (user) {
+                      // If the user is logged in, set them as the Firechat user
+                      chat.setUser(user.uid, "Anonymous" + user.uid.substr(10, 8));
+                    } else {
+                      // If the user is not logged in, sign them in anonymously
+                      firebase.auth().signInAnonymously().catch(function(error) {
+                        console.log("Error signing user in anonymously:", error);
+                      });
+                    }
+                  });
+                </script>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Bouton Chat -->
+
+              <!-- Bouton Decouverte-->
+      <div class="modal fade" id="top" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel4" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered"  role="document">
+            <div class="modal-content">
+              <div class="modal-header" >
+                <img src="" id="decouvertee" alt="">
+                <script LANGUAGE="JavaScript">
+                  var dev = document.getElementById('decouvertee');
+                  $('#decouverte').click(function(){
+                  var tab = new Array("Bienvenue_a_Zombieland_2.png","Avengers_Endgame.jpg","Avatar_2.jpg","Captain_Marvel.jpg","Dragons_3_Le_Monde_cache.jpg","Toy_Story_4.jpg","Star_Wars_Episode_IX.jpg","1aladin.jpg","1anna.jpg","1aqua.jpg","1dumbo.jpg","1glass.jpg","1joker.jpg","1mary.jpg","1men.jpg","1mule.jpg","1nicky.jpg","1terminator.jpg");
+                  var n = parseInt(Math.random() * tab.length)
+                  while (isNaN(n)) {
+                    n = parseInt(Math.random() * tab.length)  
+                  }
+                  dev.src="assets/images/"+tab[n];
+  
+                  });
+                  
+  
+                </script>
+              </div>
+            </div>
+          </div>
+        </div>
+  
+        <!--fin bouton découverte-->
+
+
+    <section id="page-top">
+
+      <!-- Navigation -->
+      <a class="menu-toggle rounded bg-warning" href="#">
+        <i class="fas fa-bars"></i>
+      </a>
+      <nav id="sidebar-wrapper">
+        <ul class="sidebar-nav">
+          <li class="sidebar-brand">
+            <a class="js-scroll-trigger" href="#page-top">Menu</a>
+          </li>
+          <li class="sidebar-nav-item">
+            <a class="js-scroll-trigger" href="actu.html">Actualités</a>
+          </li>
+          <li class="sidebar-nav-item dropdown">
+            <div class="dropright">
+                <a href="#" class="dropdown-toggle yellowText" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Catégories
+                </a>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                  <a class="dropdown-item" id="action" href="action.html">Action</a>
+                  <a class="dropdown-item" id="horreur" href="horreur.html">Horreur</a>
+                  <a class="dropdown-item" id="fantastique" href="fantastique.html">Fantastique</a>
+                  <a class="dropdown-item" id="jeunesse" href="jeunesse.html">Jeunesse</a>
+                  <a class="dropdown-item" id="comedie" href="comedie.html">Comédie</a>
+                </div>
+              </div>
+          </li>
+          <li class="sidebar-nav-item">
+            <a class="js-scroll-trigger" href="contact.html">Contact</a>
+          </li>
+        </ul>
+      </nav>
+      <!-- /Navigation -->
+
+
+
+
+
+
+      <!-- Bootstrap core JavaScript -->
+      <script src="vendor/jquery/jquery.min.js"></script>
+      <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+      <!-- Plugin JavaScript -->
+      <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+      <!-- Custom scripts for this template -->
+      <script src="js/stylish-portfolio.min.js"></script>
+    </section>
+  </nav>
+
+  <div id='div_reglage_hauteur'>
+      <h2 class="text-center">Actualité</h2>
+      <h2>Film à voir absolument</h2>
+  </div>
+  
+  <!-- card-->
+  <div class="">
+    <div class="container-fuild ">
+      <div class="row justify-content-center">
+        <div class="card ml-4 mb-4" style="width: 18rem;">
+          <img src="assets/images/4909441.jpg-c_215_290_x-f_jpg-q_x-xxyxx.jpg" class="figure-img img-fluid rounded display-inline border-0"width="390" height="250"  alt="...">
+          <div class="card-body">
+            <h5 class="card-title">La Mule</h5>
+            <h6>sortie prévu le 23 janvier 2019</h6>
+            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum..</p>
+            
+<div class="text-center">
+
+    <button type="button" class="btn btn-warning text-white" data-toggle="modal" data-target="#modalYT">Bande-annonce</button>     
+  </div>
+  
+  <!--Modal: Name-->
+  <div class="modal fade" id="modalYT" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+  
+      <!--Content-->
+      <div class="modal-content">
+  
+        <!--Body-->
+        <div class="modal-body mb-0 p-0">
+  
+          <div class="embed-responsive embed-responsive-16by9 z-depth-1-half">
+              <iframe width="560" height="315" src="https://www.youtube.com/embed/bGgyUSO24BA?start=7" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
+  
+        </div>  
+      </div>
+      <!--/.Content-->
+  
+    </div>
+  </div>
+  <!--Modal: Name-->
+          </div>
+        </div>
+  
+        <div class="card ml-4 mb-4" style="width: 18rem;">
+          <img src="assets/images/3442022.jpg-c_215_290_x-f_jpg-q_x-xxyxx.jpg" class="figure-img img-fluid rounded display-inline border-0"width="395" height="270"  alt="...">
+          <div class="card-body">
+            <h5 class="card-title">Qu'est-ce qu'on a encore fait au Bon Dieu ?</h5>
+            <h6>sortie prévu le 30 Janvier 2019</h6>
+            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.*</p>
+            <div class="text-center">
+
+                <button type="button" class="btn btn-warning text-white" data-toggle="modal" data-target="#modalYT1">Bande-annonce</button>     
+              </div>
+              
+              <!--Modal: Name-->
+              <div class="modal fade" id="modalYT1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg" role="document">
+              
+                  <!--Content-->
+                  <div class="modal-content">
+              
+                    <!--Body-->
+                    <div class="modal-body mb-0 p-0">
+              
+                      <div class="embed-responsive embed-responsive-16by9 z-depth-1-half">
+                          <iframe width="560" height="315" src="https://www.youtube.com/embed/hhIhEkZzA_8?start=7" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                      </div>
+              
+                    </div>
+                  </div>
+                  <!--/.Content-->
+              
+                </div>
+              </div>
+              <!--Modal: Name-->
+          </div>
+        </div>
+  
+        <div class="card ml-4 mb-4" style="width: 18rem;">
+          <img src="assets/images/3050161.jpg-c_215_290_x-f_jpg-q_x-xxyxx.jpg" class="figure-img img-fluid rounded display-inline border-0"width="395" height="270"  alt="...">
+          <div class="card-body">
+            <h5 class="card-title">Green Book : Sur les routes du sud</h5>
+            <h6>sortie prévu le  23 janvier 2019</h6>
+            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            <div class="text-center">
+
+                <button type="button" class="btn btn-warning text-white" data-toggle="modal" data-target="#modalYT2">Bande-annonce</button>     
+              </div>
+              
+              <!--Modal: Name-->
+              <div class="modal fade" id="modalYT2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg" role="document">
+              
+                  <!--Content-->
+                  <div class="modal-content">
+              
+                    <!--Body-->
+                    <div class="modal-body mb-0 p-0">
+              
+                      <div class="embed-responsive embed-responsive-16by9 z-depth-1-half">
+                          <iframe width="560" height="315" src="https://www.youtube.com/embed/A8hiyKiLTL4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                      </div>
+              
+                    </div>
+                  </div>
+                  <!--/.Content-->
+              
+                </div>
+              </div>
+              <!--Modal: Name-->
+          </div>
+        </div>
+  
+        <div class="card ml-4 mb-4" style="width: 18rem;">
+          <img src="assets/images/0702470.jpg-c_215_290_x-f_jpg-q_x-xxyxx.jpg" class="figure-img img-fluid rounded display-inline border-0"width="395" height="270"  alt="...">
+          <div class="card-body">
+            <h5 class="card-title">Escape Game</h5>
+            <h6>sortie prévu le 27 Fevrier 2019</h6>
+            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+            <div class="text-center">
+
+                <button type="button" class="btn btn-warning text-white" data-toggle="modal" data-target="#modalYT3">Bande-annonce</button>     
+              </div>
+              
+              <!--Modal: Name-->
+              <div class="modal fade" id="modalYT3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg" role="document">
+              
+                  <!--Content-->
+                  <div class="modal-content">
+              
+                    <!--Body-->
+                    <div class="modal-body mb-0 p-0">
+              
+                      <div class="embed-responsive embed-responsive-16by9 z-depth-1-half">
+                          <iframe width="560" height="315" src="https://www.youtube.com/embed/kMQPZGP7ivY?start=7" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                      </div>
+              
+                    </div>
+                  </div>
+                  <!--/.Content-->
+              
+                </div>
+              </div>
+              <!--Modal: Name-->
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <div class="container-fuild ">
+      <div class="row justify-content-center">
+        <div class="card ml-4 mb-4" style="width: 18rem;">
+          <img src="assets/images/0611719.jpg-c_215_290_x-f_jpg-q_x-xxyxx.jpg" class="figure-img img-fluid rounded display-inline border-0"width="395" height="270"  alt="...">
+          <div class="card-body">
+            <h5 class="card-title">Avergers Endgame</h5>
+            <h6>sortie prévu le 24 avril 2019</h6>
+            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum..</p>
+
+            <div class="text-center">
+
+                <button type="button" class="btn btn-warning text-white" data-toggle="modal" data-target="#modalYT4">Bande-annonce</button>     
+              </div>
+              
+              <!--Modal: Name-->
+              <div class="modal fade" id="modalYT4" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg" role="document">
+              
+                  <!--Content-->
+                  <div class="modal-content">
+              
+                    <!--Body-->
+                    <div class="modal-body mb-0 p-0">
+              
+                      <div class="embed-responsive embed-responsive-16by9 z-depth-1-half">
+                          <iframe width="560" height="315" src="https://www.youtube.com/embed/QgG0BQSjxoo?start=7" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                      </div>
+              
+                    </div>
+                  </div>
+                  <!--/.Content-->
+              
+                </div>
+              </div>
+              <!--Modal: Name-->
+          </div>
+        </div>
+  
+        <div class="card ml-4 mb-4" style="width: 18rem;">
+          <img src="assets/images/1451897.jpg-c_215_290_x-f_jpg-q_x-xxyxx.jpg" class="figure-img img-fluid rounded display-inline border-0"width="395" height="270"  alt="...">
+          <div class="card-body">
+            <h5 class="card-title">CreedII</h5>
+            <h6>sortie prévu le 21 Novembre 2018</h6>
+            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.*</p>
+
+            <div class="text-center">
+
+                <button type="button" class="btn btn-warning text-white" data-toggle="modal" data-target="#modalYT5">Bande-annonce</button>     
+              </div>
+              
+              <!--Modal: Name-->
+              <div class="modal fade" id="modalYT5" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg" role="document">
+              
+                  <!--Content-->
+                  <div class="modal-content">
+              
+                    <!--Body-->
+                    <div class="modal-body mb-0 p-0">
+              
+                      <div class="embed-responsive embed-responsive-16by9 z-depth-1-half">
+                          <iframe width="560" height="315" src="https://www.youtube.com/embed/AdS5ux3G-Gc?start=7" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                      </div>
+              
+                    </div>
+                  </div>
+                  <!--/.Content-->
+              
+                </div>
+              </div>
+              <!--Modal: Name-->
+          </div>
+        </div>
+  
+        <div class="card ml-4 mb-4" style="width: 18rem;">
+          <img src="assets/images/3191210.jpg-c_215_290_x-f_jpg-q_x-xxyxx.jpg" class="figure-img img-fluid rounded display-inline border-0"width="395" height="270"  alt="...">
+          <div class="card-body">
+            <h5 class="card-title">Le retour de Mary Poppins</h5>
+            <h6>sortie prévu le ...</h6>
+            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+            <div class="text-center">
+
+                <button type="button" class="btn btn-warning text-white" data-toggle="modal" data-target="#modalYT6">Bande-annonce</button>     
+              </div>
+              
+              <!--Modal: Name-->
+              <div class="modal fade" id="modalYT6" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg" role="document">
+              
+                  <!--Content-->
+                  <div class="modal-content">
+              
+                    <!--Body-->
+                    <div class="modal-body mb-0 p-0">
+              
+                      <div class="embed-responsive embed-responsive-16by9 z-depth-1-half">
+                          <iframe width="560" height="315" src="https://www.youtube.com/embed/5BW_1D5byw8?start=7" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                      </div>
+              
+                    </div>
+                  </div>
+                  <!--/.Content-->
+              
+                </div>
+              </div>
+              <!--Modal: Name-->
+          </div>
+        </div>
+  
+  
+        <div class="card ml-4 mb-4" style="width: 18rem;">
+          <img src="assets/images/2738771.jpg-c_215_290_x-f_jpg-q_x-xxyxx.jpg" class="figure-img img-fluid rounded display-inline border-0"width="395" height="270"  alt="...">
+          <div class="card-body">
+            <h5 class="card-title">Aquaman</h5>
+            <h6>sortie prévu le ...</h6>
+            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+            <div class="text-center">
+
+                <button type="button" class="btn btn-warning text-white" data-toggle="modal" data-target="#modalYT7">Bande-annonce</button>     
+              </div>
+              
+              <!--Modal: Name-->
+              <div class="modal fade" id="modalYT7" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg" role="document">
+              
+                  <!--Content-->
+                  <div class="modal-content">
+              
+                    <!--Body-->
+                    <div class="modal-body mb-0 p-0">
+              
+                      <div class="embed-responsive embed-responsive-16by9 z-depth-1-half">
+                          <iframe width="560" height="315" src="https://www.youtube.com/embed/ivvOKs7B-Vw?start=7" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                      </div>
+              
+                    </div>
+                  </div>
+                  <!--/.Content-->
+              
+                </div>
+              </div>
+              <!--Modal: Name-->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  
+  
+  
+  
+  
+  
+ 
+
+    
+    
+    <!-- FOOTER BAS DE PAGE AVEC CONTACT ET MENTIONS LEGALES -->
+      <footer id='footer'>
+        <section class="container-fluid">
+          <section class="row justify-content-center">
+    
+                <div>
+                    <p class=" h5 mx-2 my-2 colorFooter">©</p>
+                  </div>
+                  <div class="h5 mx-2 my-2 colorFooter">
+                    <a href="contact.html" class="colorFooter">CONTACT</a>
+                  </div>
+                  <div class=" h5 mx-2 my-2 colorFooter">/</div>
+                  <div class="h5 mx-2 my-2 ">
+                    <a href="mentions_legales.html" class="colorFooter">MENTIONS LEGALES</a>
+                  </div>          
+            </div>
+    
+          </section>
+        </section>
+      </footer>
+    <!-- FIN DE FOOTER -->
+
+    
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+</body>
+
+</html>

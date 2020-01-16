@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <link href="assets/style.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  <title>Movie-Discover</title>
+
+      <!-- FIREBASE -->
+      <script src="https://www.gstatic.com/firebasejs/5.7.3/firebase.js"></script>
+      <!-- <script src="https://www.gstatic.com/firebasejs/5.5.2/firebase-app.js"></script> -->
+      <!-- FIREBASE -->
+
+      <!-- Firebase App is always required and must be first -->
+      <script src="https://www.gstatic.com/firebasejs/5.5.2/firebase-app.js"></script>
+
+      <!-- Add additional services that you want to use -->
+      <script src="https://www.gstatic.com/firebasejs/5.7.2/firebase-auth.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/5.7.2/firebase-database.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/5.7.2/firebase-firestore.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/5.7.2/firebase-messaging.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/5.7.2/firebase-functions.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/5.5.2/firebase-storage.js"></script>
+
+      <script src="js/config.js"></script>
+      <script src="js/inscription-connexion.js"></script>
+
+
+
+
+ <!-- Template -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic" rel="stylesheet"
+      type="text/css">
+    <link href="vendor/simple-line-icons/css/simple-line-icons.css" rel="stylesheet">
+    <link href="assets/stylish-portfolio.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
+      crossorigin="anonymous">
+<!-- /Template -->
+
+<!-- Fire Chat -->
+
+
+  <!-- LIEN JQUERY -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <!-- LIEN JQUERY -->
+
+    <!-- Firechat -->
+    <link rel="stylesheet" href="https://cdn.firebase.com/libs/firechat/3.0.1/firechat.min.css" />
+    <script src="https://cdn.firebase.com/libs/firechat/3.0.1/firechat.min.js"></script>
+<!-- /Fire Chat -->
+
+    <!-- favicon -->
+    <link rel="icon" type="image/png" href="#" />
+
+
+
+
+          <!-- Bootstrap CSS -->
+          <link rel="stylesheet" href="assets/bootstrap.min.css">
+
+          <!-- CSS Perso -->
+          <link rel="stylesheet" href="assets/style.css">
+          <link rel="stylesheet" href="assets/index.css">
+
+
+
+
+
+
+</head>
+
+<body>
+
+
+
+
+  <!-- Navbar -->
+  <nav id="nav" class="navbar navbar-expand-lg navbar-light justify-content-center">
+    <a class="navbar-brand" href="index.html"><h1>Movie-Discover</h1></a>
+    <div>
+      <!-- Bouton Connexion -->
+      <a href="#" class="button button1" data-toggle="modal" data-target="#seconnecter" data-whatever="@seConnecter">Se connecter</a>
+      <a href="#" class="button button2" data-toggle="modal" data-target="#sinscrire" data-whatever="@sinscrire">S'inscrire</a>
+      <a href="#" class="button button3" data-toggle="modal" data-target="#chat" data-whatever="@chat">Chat</a>
+      <a href="#" class="button button4" id="decouverte" data-toggle="modal" data-target="#top" data-whatever="@top">Découverte</a>
+      <div class="modal fade" id="seconnecter" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+
+              <form id="connectForm">
+                <h1 class="modal-title yellowText" id="exampleModalLabel1">Se connecter</h1>
+                <div class="form-group">
+                  <label class="yellowText" for="exampleInputEmail1">Email</label>
+                  <input type="email" class="form-control" id="email_connexion" aria-describedby="emailHelp" placeholder="Votre email de connexion">
+                </div>
+                <div class="modal-body">
+                  <label class="yellowText" for="exampleInputPassword1">Mot de passe</label>
+                  <input type="password" class="form-control" id="password_connexion" placeholder="Mot de passe">
+                </div>
+                <button type="button" class="btn btn-primary" id="login_connexion">Se logger</button>
+                <button type="button" class="btn btn-danger" id="logout_connexion">Déconexion</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- /Bouton Connexion -->
+
+      <!-- Bouton Inscription -->
+      <div class="modal fade" id="sinscrire" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel2"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <form id="signInForm">
+                <div class="form-group">
+                  <label class="yellowText" for="exampleInputEmail1">Adresse mail</label>
+                  <input type="email" class="form-control" id="email_inscription" aria-describedby="emailHelp" placeholder="Enter email">
+                  <small id="emailHelp" class="form-text text-muted yellowText">Nous ne partagerons jamais votre email avec qui que ce soit.</small>
+                </div>
+                <div class="form-group">
+                  <label class="yellowText" for="exampleInputPassword1">Mot de passe</label>
+                  <input type="password" class="form-control" id="password_inscription" placeholder="Mot de passe">
+                </div>
+                <div class="form-group">
+                  <label class="yellowText" for="exampleInputPassword1">Confirmez le mot de passe</label>
+                  <input type="password" class="form-control" id="password2_inscription" placeholder="Confirmez le mot de passe">
+                </div>
+                <div class="form-group form-check">
+                  <input type="checkbox" id="condition" class="form-check-input" id="cond_gen">
+                  <label class="yellowText" class="form-check-label"><a href="#">Accepter les conditions générales</a></label>
+                </div>
+                <button type="button" class="btn btn-primary" id="create_user">Créer un compte</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- /Bouton Connexion -->
+
+      <!-- Bouton Chat -->
+      <div class="modal fade" id="chat" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel3"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+                <div id="firechat-wrapper"></div>
+                <script type="text/javascript">
+
+
+                  // Get a reference to the Firebase Realtime Database
+                  var chatRef = firebase.database().ref();
+
+                  // Create an instance of Firechat
+                  var chat = new FirechatUI(chatRef, document.getElementById("firechat-wrapper"));
+
+                  // Listen for authentication state changes
+                  firebase.auth().onAuthStateChanged(function(user) {
+                    if (user) {
+                      // If the user is logged in, set them as the Firechat user
+                      chat.setUser(user.uid, "Anonymous" + user.uid.substr(10, 8));
+                    } else {
+                      // If the user is not logged in, sign them in anonymously
+                      firebase.auth().signInAnonymously().catch(function(error) {
+                        console.log("Error signing user in anonymously:", error);
+                      });
+                    }
+                  });
+                </script>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Bouton Chat -->
+              <!-- Bouton Decouverte-->
+      <div class="modal fade" id="top" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel4" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered"  role="document">
+            <div class="modal-content">
+              <div class="modal-header" >
+                <img src="" id="decouvertee" alt="">
+                <script LANGUAGE="JavaScript">
+                  var dev = document.getElementById('decouvertee');
+                  $('#decouverte').click(function(){
+                  var tab = new Array("Bienvenue_a_Zombieland_2.png","Avengers_Endgame.jpg","Avatar_2.jpg","Captain_Marvel.jpg","Dragons_3_Le_Monde_cache.jpg","Toy_Story_4.jpg","Star_Wars_Episode_IX.jpg","1aladin.jpg","1anna.jpg","1aqua.jpg","1dumbo.jpg","1glass.jpg","1joker.jpg","1mary.jpg","1men.jpg","1mule.jpg","1nicky.jpg","1terminator.jpg");
+                  var n = parseInt(Math.random() * tab.length)
+                  while (isNaN(n)) {
+                    n = parseInt(Math.random() * tab.length)
+                  }
+                  dev.src="assets/images/"+tab[n];
+
+                  });
+
+
+                </script>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!--fin bouton découverte-->
+
+
+    <section id="page-top">
+
+      <!-- Navigation -->
+      <a class="menu-toggle rounded bg-warning" href="#" id="button_burger_us">
+        <i class="fas fa-bars"></i>
+      </a>
+      <nav id="sidebar-wrapper">
+        <ul class="sidebar-nav">
+          <li class="sidebar-brand">
+            <a class="js-scroll-trigger" href="#page-top">Menu</a>
+          </li>
+          <li class="sidebar-nav-item">
+            <a class="js-scroll-trigger" href="actu.html">Actualités</a>
+          </li>
+          <li class="sidebar-nav-item dropdown">
+            <div class="dropright">
+                <a href="#" class="dropdown-toggle yellowText" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Catégories
+                </a>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                  <a class="dropdown-item" id="action" href="action.html">Action</a>
+                  <a class="dropdown-item" id="horreur" href="horreur.html">Horreur</a>
+                  <a class="dropdown-item" id="fantastique" href="fantastique.html">Fantastique</a>
+                  <a class="dropdown-item" id="jeunesse" href="jeunesse.html">Jeunesse</a>
+                  <a class="dropdown-item" id="comedie" href="comedie.html">Comédie</a>
+                </div>
+              </div>
+          </li>
+          <li class="sidebar-nav-item">
+            <a class="js-scroll-trigger" href="contact.html">Contact</a>
+          </li>
+        </ul>
+      </nav>
+      <!-- /Navigation -->
+
+
+
+
+
+
+      <!-- Bootstrap core JavaScript -->
+      <script src="vendor/jquery/jquery.min.js"></script>
+      <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+      <!-- Plugin JavaScript -->
+      <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+      <!-- Custom scripts for this template -->
+      <script src="js/stylish-portfolio.min.js"></script>
+    </section>
+  </nav>
+
+
+<div id="carsel">
+    <!-- CAROUSEL SLIDE AVEC BOUTON -->
+    <div id="carouselExampleControls" class="carousel slide carousel-fade" data-ride="carousel">
+        <!-- INDICATEURS CAROUSEL -->
+          <ol class="carousel-indicators">
+              <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+              <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+              <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+              <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
+              <li data-target="#carouselExampleIndicators" data-slide-to="4"></li>
+            </ol>
+        <!-- FIN INDICATEURS CAROUSEL -->
+
+        <!-- IMAGES SLIDE DU CAROUSEL -->
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img class="d-block w-100" src="assets/images/slide0.jpg" alt="First slide">
+            <div class="carousel-caption d-none d-md-block">
+              <a href="category.html"><h1 class="titre_slide_us">ACTION</h1></a>
+                  <p id="sous-texte-titre-us">Le film d'action est un type de film qui met en scène une succession de scènes spectaculaires souvent stéréotypées (courses-poursuites, fusillades, explosions…) construites autour d'un conflit résolu de manière violente, généralement par la mort des ennemis du héros.</p>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <img class="d-block w-100" src="assets/images/slide2.jpg" alt="Second slide">
+            <div class="carousel-caption d-none d-md-block">
+              <h1 class="titre_slide_us">HORREUR</h1>
+              <p>Le film d'horreur, ou film d'épouvante, est un genre cinématographique dont l'objectif est de créer un sentiment de peur, de répulsion ou d'angoisse chez le spectateur</p>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <img class="d-block w-100" src="assets/images/slide3.jpg" alt="Third slide">
+            <div class="carousel-caption d-none d-md-block">
+              <h1 class="titre_slide_us">FANTASTIQUE</h1>
+              <p>Le film fantastique est un genre cinématographique regroupant des films faisant appel au surnature. L’intrigue se fonde sur des éléments irrationnels ou irréalistes.</p>
+            </div>
+          </div>
+          <div class="carousel-item">
+              <img class="d-block w-100" src="assets/images/slide4.jpg" alt="Second slide">
+              <div class="carousel-caption d-none d-md-block">
+                <h1 class="titre_slide_us">JEUNESSE</h1>
+                <p>Un film pour enfant est léger au sens de divertissement et devrait se soucier de ne pas marquer défavorablement ses jeunes spectateurs</p>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <img class="d-block w-100" src="assets/images/slide5.jpg" alt="Third slide">
+              <div class="carousel-caption d-none d-md-block">
+                <h1 class="titre_slide_us">COMEDIE</h1>
+                <p>Le but des films dits comiques est d'amuser les spectateurs à travers des situations, des dialogues, des personnages ou des effets à même de faire sourire ou rire. Traditionnellement on attend de ces films une fin heureuse</p>
+              </div>
+            </div>
+        </div>
+        <!-- FIN IMAGES SLIDE CAROUSEL -->
+
+        <!-- BOUTONS CONTROLE CAROUSEL -->
+        <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
+      </div>
+      <!-- FIN BOUTONS CONTROLE CAROUSEL -->
+      <!-- FIN CAROUSEL -->
+      </div>
+
+
+
+    <!-- FOOTER BAS DE PAGE AVEC CONTACT ET MENTIONS LEGALES -->
+      <footer id='footer'>
+        <section class="container-fluid">
+          <section class="row justify-content-center">
+
+                <div>
+                    <p class=" h5 mx-2 my-2 colorFooter">©</p>
+                  </div>
+                  <div class="h5 mx-2 my-2 colorFooter">
+                    <a href="contact.html" class="colorFooter">CONTACT</a>
+                  </div>
+                  <div class=" h5 mx-2 my-2 colorFooter">/</div>
+                  <div class="h5 mx-2 my-2 ">
+                    <a href="mentions_legales.html" class="colorFooter">MENTIONS LEGALES</a>
+                  </div>
+            </div>
+
+          </section>
+        </section>
+      </footer>
+    <!-- FIN DE FOOTER -->
+
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+</body>
+
+</html>

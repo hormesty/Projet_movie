@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  
+  <!-- Bootstrap core CSS -->
+  <link href="vendor2/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="assets/style.css" rel="stylesheet">
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <link href="assets/style.css" rel="stylesheet">
+
+  <title>Movie-Discover</title>
+
+      <!-- FIREBASE -->
+      <script src="https://www.gstatic.com/firebasejs/5.7.3/firebase.js"></script>
+      <!-- <script src="https://www.gstatic.com/firebasejs/5.5.2/firebase-app.js"></script> -->
+      <!-- FIREBASE -->
+
+      <!-- Firebase App is always required and must be first -->
+      <script src="https://www.gstatic.com/firebasejs/5.5.2/firebase-app.js"></script>
+
+      <!-- Add additional services that you want to use -->
+      <script src="https://www.gstatic.com/firebasejs/5.7.2/firebase-auth.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/5.7.2/firebase-database.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/5.7.2/firebase-firestore.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/5.7.2/firebase-messaging.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/5.7.2/firebase-functions.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/5.5.2/firebase-storage.js"></script>
+  
+      <script src="js/config.js"></script>
+      <script src="js/inscription-connexion.js"></script>
+      <script src="js/category.js"></script>
+
+
+
+
+ <!-- Template -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic" rel="stylesheet"
+      type="text/css">
+    <link href="vendor/simple-line-icons/css/simple-line-icons.css" rel="stylesheet">
+    <link href="assets/stylish-portfolio.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
+      crossorigin="anonymous">
+<!-- /Template -->
+  
+<!-- Fire Chat -->
+   
+
+  <!-- LIEN JQUERY -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <!-- LIEN JQUERY -->
+  
+    <!-- Firechat -->
+    <link rel="stylesheet" href="https://cdn.firebase.com/libs/firechat/3.0.1/firechat.min.css" />
+    <script src="https://cdn.firebase.com/libs/firechat/3.0.1/firechat.min.js"></script>
+<!-- /Fire Chat -->
+
+    <!-- favicon -->
+    <link rel="icon" type="image/png" href="#" />
+
+
+
+      
+          <!-- Bootstrap CSS -->
+          <link rel="stylesheet" href="assets/bootstrap.min.css">
+      
+          <!-- CSS Perso -->
+          <link rel="stylesheet" href="assets/style.css">
+          <link rel="stylesheet" href="assets/category.css">
+
+
+
+          
+  
+
+</head>
+
+<body>
+    <nav id="nav" class="navbar navbar-expand-lg navbar-light justify-content-center">
+        <a class="navbar-brand" href="index.html"><h1>Movie-Discover</h1></a>
+        <div>
+          <!-- Bouton Connexion -->
+          <a href="#" class="button button1" data-toggle="modal" data-target="#seconnecter" data-whatever="@seConnecter">Se connecter</a>
+          <a href="#" class="button button2" data-toggle="modal" data-target="#sinscrire" data-whatever="@sinscrire">S'inscrire</a>
+          <a href="#" class="button button3" data-toggle="modal" data-target="#chat" data-whatever="@chat">Chat</a>
+          <a href="#" class="button button4" id="decouverte" data-toggle="modal" data-target="#top" data-whatever="@top">Découverte</a>
+          <div class="modal fade" id="seconnecter" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1"
+            aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <form id="connectForm">
+                    <h1 class="modal-title yellowText" id="exampleModalLabel1">Se connecter</h1>
+                    <div class="form-group">
+                      <label class="yellowText" for="exampleInputEmail1">Email</label>
+                      <input type="email" class="form-control" id="email_connexion" aria-describedby="emailHelp" placeholder="Votre email de connexion">
+                    </div>
+                    <div class="modal-body">
+                      <label class="yellowText" for="exampleInputPassword1">Mot de passe</label>
+                      <input type="password" class="form-control" id="password_connexion" placeholder="Mot de passe">
+                    </div>
+                    <button type="button" class="btn btn-primary" id="login_connexion">Se logger</button>
+                    <button type="button" class="btn btn-danger" id="logout_connexion">Déconexion</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- /Bouton Connexion -->
+    
+          <!-- Bouton Inscription -->
+          <div class="modal fade" id="sinscrire" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel2"
+            aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <form id="signInForm">
+                    <div class="form-group">
+                      <label class="yellowText" for="exampleInputEmail1">Adresse mail</label>
+                      <input type="email" class="form-control" id="email_inscription" aria-describedby="emailHelp" placeholder="Enter email">
+                      <small id="emailHelp" class="form-text text-muted yellowText">Nous ne partagerons jamais votre email avec qui que ce soit.</small>
+                    </div>
+                    <div class="form-group">
+                      <label class="yellowText" for="exampleInputPassword1">Mot de passe</label>
+                      <input type="password" class="form-control" id="password_inscription" placeholder="Mot de passe">
+                    </div>
+                    <div class="form-group">
+                      <label class="yellowText" for="exampleInputPassword1">Confirmez le mot de passe</label>
+                      <input type="password" class="form-control" id="password2_inscription" placeholder="Confirmez le mot de passe">
+                    </div>
+                    <div class="form-group form-check">
+                      <input type="checkbox" id="condition" class="form-check-input" id="cond_gen">
+                      <label class="yellowText" class="form-check-label"><a href="#">Accepter les conditions générales</a></label>
+                    </div>
+                    <button type="button" class="btn btn-primary" id="create_user">Créer un compte</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- /Bouton Connexion -->
+    
+          <!-- Bouton Chat -->
+          <div class="modal fade" id="chat" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel3"
+            aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                    <div id="firechat-wrapper"></div>
+                    <script type="text/javascript">
+    
+                
+                      // Get a reference to the Firebase Realtime Database
+                      var chatRef = firebase.database().ref();
+                
+                      // Create an instance of Firechat
+                      var chat = new FirechatUI(chatRef, document.getElementById("firechat-wrapper"));
+                
+                      // Listen for authentication state changes
+                      firebase.auth().onAuthStateChanged(function(user) {
+                        if (user) {
+                          // If the user is logged in, set them as the Firechat user
+                          chat.setUser(user.uid, "Anonymous" + user.uid.substr(10, 8));
+                        } else {
+                          // If the user is not logged in, sign them in anonymously
+                          firebase.auth().signInAnonymously().catch(function(error) {
+                            console.log("Error signing user in anonymously:", error);
+                          });
+                        }
+                      });
+                    </script>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Bouton Chat -->
+
+                  <!-- Bouton Decouverte-->
+      <div class="modal fade" id="top" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel4" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered"  role="document">
+            <div class="modal-content">
+              <div class="modal-header" >
+                <img src="" id="decouvertee" alt="">
+                <script LANGUAGE="JavaScript">
+                  var dev = document.getElementById('decouvertee');
+                  $('#decouverte').click(function(){
+                  var tab = new Array("Bienvenue_a_Zombieland_2.png","Avengers_Endgame.jpg","Avatar_2.jpg","Captain_Marvel.jpg","Dragons_3_Le_Monde_cache.jpg","Toy_Story_4.jpg","Star_Wars_Episode_IX.jpg","1aladin.jpg","1anna.jpg","1aqua.jpg","1dumbo.jpg","1glass.jpg","1joker.jpg","1mary.jpg","1men.jpg","1mule.jpg","1nicky.jpg","1terminator.jpg");
+                  var n = parseInt(Math.random() * tab.length)
+                  while (isNaN(n)) {
+                    n = parseInt(Math.random() * tab.length)  
+                  }
+                  dev.src="assets/images/"+tab[n];
+  
+                  });
+                  
+  
+                </script>
+              </div>
+            </div>
+          </div>
+        </div>
+  
+        <!--fin bouton découverte-->
+    
+    
+        <section id="page-top">
+    
+          <!-- Navigation -->
+          <a class="menu-toggle rounded bg-warning" href="#">
+            <i class="fas fa-bars"></i>
+          </a>
+          <nav id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+              <li class="sidebar-brand">
+                <a class="js-scroll-trigger" href="#page-top">Menu</a>
+              </li>
+              <li class="sidebar-nav-item">
+                <a class="js-scroll-trigger" href="actu.html">Actualités</a>
+              </li>
+              <li class="sidebar-nav-item dropdown">
+                <div class="dropright">
+                    <a href="#" class="dropdown-toggle yellowText" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      Catégories
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                      <a class="dropdown-item" id="action" href="category.html">Action</a>
+                      <a class="dropdown-item" id="horreur" href="#">Horreur</a>
+                      <a class="dropdown-item" id="fantastique" href="#">Fantastique</a>
+                      <a class="dropdown-item" id="jeunesse" href="#">Jeunesse</a>
+                      <a class="dropdown-item" id="comedie" href="#">Comédie</a>
+                    </div>
+                  </div>
+              </li>
+              <li class="sidebar-nav-item">
+                <a class="js-scroll-trigger" href="contact.html">Contact</a>
+              </li>
+            </ul>
+          </nav>
+          <!-- /Navigation -->
+    
+    
+    
+    
+
+    
+          <!-- Bootstrap core JavaScript -->
+          <script src="vendor/jquery/jquery.min.js"></script>
+          <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    
+          <!-- Plugin JavaScript -->
+          <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+    
+          <!-- Custom scripts for this template -->
+          <script src="js/stylish-portfolio.min.js"></script>
+    
+          <!-- Bootstrap core JavaScript -->
+          <script src="vendor2/vendor/jquery/jquery.min.js"></script>
+          <script src="vendor2/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    
+          <!-- Plugin JavaScript -->
+          <!-- <script src="vendor2//vendor/jquery-easing/jquery.easing.min.js"></script> -->
+
+<!-- /////////////////////////////////////////////////////////////////////////////////// -->
+          <!-- Bootstrap core JavaScript -->
+          <!-- <script src="vendor2/vendor/jquery/jquery.min.jsq&"></script> -->
+          <script src="vendor2/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- /////////////////////////////////////////////////////////////////////////////////// -->
+        </section>
+      </nav>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-10">
+        <h1 class="text-center mb-4 seb " id="genre">Action</h1>
+        <h1 class="replaceTitle">CreedII</h1>
+
+        <div class="film1">
+          <iframe class="float-right d-inline-block" width="395" height="270" src="https://www.youtube.com/embed/0O3EGU1xH1o" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <img class="d-inline-block" src="assets/images/creed2.jpg" alt="" id="jpp">
+          <h2 class="d-inline-block ml-4"></h2>
+        </div>
+
+      </div>
+
+      <!-- Post Content -->
+      <div class="col-md-10">
+        <h3 class="my-4">SYNOPSIS ET DÉTAILS</h3>
+        <p>La vie est devenue un numéro d'équilibriste pour Adonis Creed. Entre ses obligations personnelles et son entraînement pour son prochain grand match, il est à la croisée des chemins. Et l'enjeu du combat est d'autant plus élevé que son rival est lié au passé de sa famille. Mais il peut compter sur la présence de Rocky Balboa à ses côtés : avec lui, il comprendra ce qui vaut la peine de se battre et découvrira qu'il n'y a rien de plus important que les valeurs familiales.</p>
+
+        <hr>
+
+      </div>
+      <div class="card col-md-10 my-4 p-0 border-0">
+        <h4 class="card-header bg-dark">Leave a Comment:</h4>
+        <div class="card-body bg-dark">
+          <form>
+            <div class="form-group">
+              <textarea class="form-control" rows="4"></textarea>
+            </div>
+            <button type="submit" class="btn btn-warning">Submit</button>
+          </form>
+        </div>
+      </div>
+
+      <!-- Comment -->
+      <div class="media col-md-10 mb-4">
+        <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
+        <div class="media-body">
+          <h5 class="mt-0">Commenter Name</h5>
+          Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+        </div>
+      </div>
+
+      <div class="media col-md-10 mb-4">
+        <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
+        <div class="media-body">
+          <h5 class="mt-0">Commenter Name</h5>
+          Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+        </div>
+      </div>
+
+      <div class="media col-md-10 mb-4">
+        <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
+        <div class="media-body">
+          <h5 class="mt-0">Commenter Name</h5>
+          Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+        </div>
+      </div>
+
+      <div class="media col-md-10 mb-4">
+        <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
+        <div class="media-body">
+          <h5 class="mt-0">Commenter Name</h5>
+          Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <!-- Image -->
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-10">
+        <h1 class="replaceTitle">John wick</h1>
+
+        <div class="film1">
+          <iframe class="float-right d-inline-block" width="395" height="270" src="https://www.youtube.com/embed/pWK5crMuhHY" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <img class="d-inline-block" src="assets/images/johnwick.jpg" alt="">
+          <h2 class="d-inline-block ml-4"></h2>
+        </div>
+
+      </div>
+
+      <!-- Post Content -->
+      <div class="col-md-10">
+        <h3 class="my-4">SYNOPSIS ET DÉTAILS</h3>
+        <p>Depuis la mort de sa femme bien-aimée, John Wick passe ses journées à retaper sa Ford Mustang de 1969, avec pour seule compagnie sa chienne Daisy. Il mène une vie sans histoire, jusqu’à ce qu’un malfrat sadique nommé Iosef Tarasof remarque sa voiture. John refuse de la lui vendre. Iosef n’acceptant pas qu’on lui résiste, s’introduit chez John avec deux complices pour voler la Mustang, et tuer sauvagement Daisy…
+            John remonte la piste de Iosef jusqu’à New York. Un ancien contact, Aurelio, lui apprend que le malfrat est le fils unique d’un grand patron de la pègre, Viggo Tarasof. La rumeur se répand rapidement dans le milieu : le légendaire tueur cherche Iosef. Viggo met à prix la tête de John : quiconque l’abattra touchera une énorme récompense. John a désormais tous les assassins de New York aux trousses.
+            
+            </p>
+
+        <hr>
+
+      </div>
+      <!-- Comments Form -->
+      <div class="card col-md-10 my-4 p-0 border-0">
+        <h4 class="card-header bg-dark">Leave a Comment:</h4>
+        <div class="card-body bg-dark">
+          <form>
+            <div class="form-group">
+              <textarea class="form-control" rows="4"></textarea>
+            </div>
+            <button type="submit" class="btn btn-warning">Submit</button>
+          </form>
+        </div>
+      </div>
+
+      <!-- Comment -->
+      <div class="media col-md-10 mb-4">
+        <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
+        <div class="media-body">
+          <h5 class="mt-0">Commenter Name</h5>
+          Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+        </div>
+      </div>
+
+      <div class="media col-md-10 mb-4">
+        <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
+        <div class="media-body">
+          <h5 class="mt-0">Commenter Name</h5>
+          Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+        </div>
+      </div>
+
+      <div class="media col-md-10 mb-4">
+        <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
+        <div class="media-body">
+          <h5 class="mt-0">Commenter Name</h5>
+          Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+        </div>
+      </div>
+
+      <div class="media col-md-10 mb-4">
+        <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
+        <div class="media-body">
+          <h5 class="mt-0">Commenter Name</h5>
+          Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+
+  <!-- Image -->
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-10">
+        <h1 class="replaceTitle">Fast and Furious 8</h1>
+
+        <div class="film1">
+          <iframe class="float-right d-inline-block" width="395" height="270" src="https://www.youtube.com/embed/xFO-pKB13mw" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <img class="d-inline-block" src="assets/images/faf.jpg" alt="">
+          <h2 class="d-inline-block ml-4"></h2>
+        </div>
+
+      </div>
+
+      <!-- Post Content -->
+      <div class="col-md-10">
+        <h3 class="my-4">SYNOPSIS ET DÉTAILS</h3>
+        <p>Maintenant que Dom et Letty sont en lune de miel, que Brian et Mia se sont rangés et que le reste de l’équipe a été disculpé, la bande de globetrotteurs retrouve un semblant de vie normale. Mais quand une mystérieuse femme entraîne Dom dans le monde de la criminalité, ce dernier ne pourra éviter de trahir ses proches qui vont faire face à des épreuves qu’ils n’avaient jamais rencontrées jusqu’alors. 
+            Des rivages de Cuba au rues de New York en passant par les plaines gelées de la mer arctique de Barrents, notre équipe va sillonner le globe pour tenter d'empêcher une anarchiste de déchaîner un chaos mondial et de ramener à la maison l’homme qui a fait d’eux une famille.</p>
+
+        <hr>
+
+      </div>
+      <!-- Comments Form -->
+      <div class="card col-md-10 my-4 p-0 border-0">
+        <h4 class="card-header bg-dark">Leave a Comment:</h4>
+        <div class="card-body bg-dark">
+          <form>
+            <div class="form-group">
+              <textarea class="form-control" rows="4"></textarea>
+            </div>
+            <button type="submit" class="btn btn-warning">Submit</button>
+          </form>
+        </div>
+      </div>
+
+      <!-- Comment -->
+      <div class="media col-md-10 mb-4">
+        <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
+        <div class="media-body">
+          <h5 class="mt-0">Commenter Name</h5>
+          Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+        </div>
+      </div>
+
+      <div class="media col-md-10 mb-4">
+        <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
+        <div class="media-body">
+          <h5 class="mt-0">Commenter Name</h5>
+          Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+        </div>
+      </div>
+
+      <div class="media col-md-10 mb-4">
+        <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
+        <div class="media-body">
+          <h5 class="mt-0">Commenter Name</h5>
+          Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+        </div>
+      </div>
+
+      <div class="media col-md-10 mb-4">
+        <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
+        <div class="media-body">
+          <h5 class="mt-0">Commenter Name</h5>
+          Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <!-- Image -->
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-10">
+        <h1 class="replaceTitle">Gladiator</h1>
+
+        <div class="film1">
+          <iframe class="float-right d-inline-block" width="395" height="270" src="https://www.youtube.com/embed/Nz5CnNHnpO8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <img class="d-inline-block" src="assets/images/gladiator.jpg" alt="">
+          <h2 class="d-inline-block ml-4"></h2>
+        </div>
+
+      </div>
+
+      <!-- Post Content -->
+      <div class="col-md-10">
+        <h3 class="my-4">SYNOPSIS ET DÉTAILS</h3>
+        <p>Le général romain Maximus est le plus fidèle soutien de l'empereur Marc Aurèle, qu'il a conduit de victoire en victoire avec une bravoure et un dévouement exemplaires. Jaloux du prestige de Maximus, et plus encore de l'amour que lui voue l'empereur, le fils de MarcAurèle, Commode, s'arroge brutalement le pouvoir, puis ordonne l'arrestation du général et son exécution. Maximus échappe à ses assassins mais ne peut empêcher le massacre de sa famille. Capturé par un marchand d'esclaves, il devient gladiateur et prépare sa vengeance.</p>
+
+        <hr>
+
+      </div>
+      <!-- Comments Form -->
+      <div class="card col-md-10 my-4 p-0 border-0">
+        <h4 class="card-header bg-dark">Leave a Comment:</h4>
+        <div class="card-body bg-dark">
+          <form>
+            <div class="form-group">
+              <textarea class="form-control" rows="4"></textarea>
+            </div>
+            <button type="submit" class="btn btn-warning">Submit</button>
+          </form>
+        </div>
+      </div>
+
+      <!-- Comment -->
+      <div class="media col-md-10 mb-4">
+        <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
+        <div class="media-body">
+          <h5 class="mt-0">Commenter Name</h5>
+          Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+        </div>
+      </div>
+
+      <div class="media col-md-10 mb-4">
+        <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
+        <div class="media-body">
+          <h5 class="mt-0">Commenter Name</h5>
+          Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+        </div>
+      </div>
+
+      <div class="media col-md-10 mb-4">
+        <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
+        <div class="media-body">
+          <h5 class="mt-0">Commenter Name</h5>
+          Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+        </div>
+      </div>
+
+      <div class="media col-md-10 mb-4">
+        <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
+        <div class="media-body">
+          <h5 class="mt-0">Commenter Name</h5>
+          Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <!-- Image -->
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-10">
+        <h1 class="replaceTitle">Black panther</h1>
+
+        <div class="film1">
+          <iframe class="float-right d-inline-block" width="395" height="270" src="https://www.youtube.com/embed/noTuWxGmYlw" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <img class="d-inline-block" src="assets/images/blackpanther.jpg" alt="">
+          <h2 class="d-inline-block ml-4"></h2>
+        </div>
+
+      </div>
+
+      <!-- Post Content -->
+      <div class="col-md-10">
+        <h3 class="my-4">SYNOPSIS ET DÉTAILS</h3>
+        <p>Après les événements qui se sont déroulés dans Captain America : Civil War, T’Challa revient chez lui prendre sa place sur le trône du Wakanda, une nation africaine technologiquement très avancée. Mais lorsqu’un vieil ennemi resurgit, le courage de T’Challa est mis à rude épreuve, aussi bien en tant que souverain qu’en tant que Black Panther. Il se retrouve entraîné dans un conflit qui menace non seulement le destin du Wakanda, mais celui du monde entier…</p>
+
+        <hr>
+
+      </div>
+      <!-- Comments Form -->
+      <div class="card col-md-10 my-4 p-0 border-0">
+        <h4 class="card-header bg-dark">Leave a Comment:</h4>
+        <div class="card-body bg-dark">
+          <form>
+            <div class="form-group">
+              <textarea class="form-control" rows="4"></textarea>
+            </div>
+            <button type="submit" class="btn btn-warning">Submit</button>
+          </form>
+        </div>
+      </div>
+
+      <!-- Comment -->
+      <div class="media col-md-10 mb-4">
+        <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
+        <div class="media-body">
+          <h5 class="mt-0">Commenter Name</h5>
+          Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+        </div>
+      </div>
+
+      <div class="media col-md-10 mb-4">
+        <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
+        <div class="media-body">
+          <h5 class="mt-0">Commenter Name</h5>
+          Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+        </div>
+      </div>
+
+      <div class="media col-md-10 mb-4">
+        <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
+        <div class="media-body">
+          <h5 class="mt-0">Commenter Name</h5>
+          Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+        </div>
+      </div>
+
+      <div class="media col-md-10 mb-4">
+        <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
+        <div class="media-body">
+          <h5 class="mt-0">Commenter Name</h5>
+          Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+        </div>
+      </div>
+    </div>
+  </div>
+
+      <!-- FOOTER BAS DE PAGE AVEC CONTACT ET MENTIONS LEGALES -->
+      <footer id='footer'>
+          <section class="container-fluid">
+            <section class="row justify-content-center">
+              <div class="col-12">
+  
+              </div>
+                  <div>
+                      <p class=" h5 mx-2 my-2 colorFooter">©</p>
+                    </div>
+                    <div class="h5 mx-2 my-2 colorFooter">
+                      <a href="contact.html" class="colorFooter">CONTACT</a>
+                    </div>
+                    <div class=" h5 mx-2 my-2 colorFooter">/</div>
+                    <div class="h5 mx-2 my-2 ">
+                      <a href="mentions_legales.html" class="colorFooter">MENTIONS LEGALES</a>
+                    </div>          
+  
+      
+            </section>
+          </section>
+        </footer>
+      <!-- FIN DE FOOTER -->
+
+</body>
+</html>
